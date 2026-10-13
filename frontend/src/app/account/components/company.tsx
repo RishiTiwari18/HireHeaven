@@ -100,7 +100,14 @@ const Company = () => {
       clearData();
       fetchCompanies();
     } catch (error: any) {
-      toast.error(error.response.data.message);
+      console.error("Add company error:", error);
+
+  const message =
+    error?.response?.data?.message ||
+    error?.message ||
+    "Failed to add company. Please try again.";
+
+  toast.error(message);
     } finally {
       setBtnLoading(false);
     }
